@@ -3,4 +3,4 @@ project(Simulatore)
 
 set(CMAKE_C_STANDARD_99)
 
-add_executable(Simulatore main.c ReadFile.c)
+add_executable(Simulatore main.c ManageFile.c)

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "ReadFile.h"
+#include "ManageFile.h"
 int main() {
     /////////////////////
     ///#1 INTESTAZIONE//////////////////////////////////////////////////////////////////////
@@ -18,23 +18,27 @@ int main() {
     /////////////////////////////
     // #2.1 Definizione delle variabili da leggere
 
-    double datiengine [7];
+    double datiengine [7], datipropeller[15], matricepropeller[1000][4];
     int ritorno=0;
-
 
 
     // #2.1 Definizione delle variabili da leggere
 
-
     //#2.2 Apertura dei file, lettura e salvataggio su vettori
-    ritorno = Readengine(datiengine);
-    if (ritorno == 1)
-    {
-        printf("ERRORE nella lettura del file engine.txt\n");
+    ritorno = ReadEngine(datiengine);
+    if (ritorno){
+        printf("[!]ERRORE nella lettura del file engine.txt\n");
         exit(10);
     }
 
-    printf("%f", datiengine[6]*10);
+    PrintEngine(datiengine);
+
+    ritorno = ReadPropeller(datipropeller, matricepropeller);
+    if (ritorno){
+        printf("[!]ERRORE nella lettura del file propeller.txt\n");
+        exit(10);
+    }
+
 
     return 0;
 }
