@@ -18,7 +18,8 @@ int main() {
     /////////////////////////////
     // #2.1 Definizione delle variabili da leggere
 
-    double datiengine [7], datipropeller[15], matricepropeller[1000][4];
+    double datiengine [7], datipropeller[11];
+    double CSI[100],RD[100], CH[100], BA[100];
     int ritorno=0;
 
 
@@ -26,19 +27,19 @@ int main() {
 
     //#2.2 Apertura dei file, lettura e salvataggio su vettori
     ritorno = ReadEngine(datiengine);
-    if (ritorno){
+    if (ritorno==1){
         printf("[!]ERRORE nella lettura del file engine.txt\n");
         exit(10);
     }
 
     PrintEngine(datiengine);
 
-    ritorno = ReadPropeller(datipropeller, matricepropeller);
-    if (ritorno){
+    ritorno = ReadPropeller(datipropeller, CSI, RD, CH, BA);
+    if (ritorno==1){
         printf("[!]ERRORE nella lettura del file propeller.txt\n");
         exit(10);
     }
 
-
+    PrintPropeller(datipropeller);
     return 0;
 }
