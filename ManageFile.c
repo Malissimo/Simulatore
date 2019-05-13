@@ -4,9 +4,9 @@
 #include "ManageFile.h"
 
 
-// il codice legge i file in input
+// il codice legge e salva i dati dei file in input. Stampa a video per conferma dell'utente
 
-int ReadEngine(double *datiengine)
+int ReadEngine(double *datiengine) //legge engine.txt e salva i dati in un unico vettore
 {
     // INIZIALIZZAZIONE delle variabili
 
@@ -53,7 +53,7 @@ void PrintEngine(double *datiengine) //stampa a video dati del file engine.txt
 }
 
 
-int ReadPropeller(double *datipropeller, double *CSI,double *RD, double *CH, double *BA)
+int ReadPropeller(double *datipropeller, double *CSI,double *RD, double *CH, double *BA) //legge propeller.txt: salva i dati geometrici e aerodinamici in un unico vettore, divide in 4 vettori le colonne
 {
     // INIZIALIZZAZIONE delle variabili
 
@@ -81,13 +81,14 @@ int ReadPropeller(double *datipropeller, double *CSI,double *RD, double *CH, dou
                 i=0;
                 continue;
             }
-            if (flag==0) {
+            if (flag==0) //legge e salva dati geometrici e aerodinamici in un solo vettore
+            {
                 //printf("%s", buffer);
                 datipropeller[i] = strtof(buffer,&str); //converte il segmento in un numero e lo colloca nel vettore dati
                 //printf("%g\n", datipropeller[i]);
                 //printf("%s\n", str);
             }
-            else
+            else //legge e salva i dati della tabella in 4 vettori
             {
                 //printf("%s",buffer);
                 CSI[i] = strtof(buffer,&col1); // salva un vettore CSI
@@ -142,7 +143,7 @@ int ReadDBA(double*descvel, double *deflec, double *massacomb,
         double *CnB,double *CnBP,double *CnP,double *CnR,double *CnA,double *CnQ,
         double *CXde,double *CXdle,double *CZde,double *CZdle,double *CYda,double *CYdr,
         double *Clda,double *Cldr,double *Cmde,double *Cmdle,double *Cnda,double *Cndr,
-        double *CXom,double *CYom,double *CZom,double *Clom,double *Cmom,double *Cnom)
+        double *CXom,double *CYom,double *CZom,double *Clom,double *Cmom,double *Cnom) // legge dba.txt, salva ogni sezione in vettori differenti
 {
     // INIZIALIZZAZIONE delle variabili
 
@@ -164,6 +165,8 @@ int ReadDBA(double*descvel, double *deflec, double *massacomb,
         }
         else
         {
+            // ogni flag corrisponde ad una differente sezione del file (letta la sezione azzera il contatore e passa alla successiva)
+
             if(flag==0)//prende i dati di DESCRIZIONE VELIVOLO (con uno 0 in più iniziale perchè legge gli spazi iniziali)
             {
                 //printf("%s", buffer);

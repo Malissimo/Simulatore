@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "ManageFile.h"
+#include "Atmosphere.h"
 int main() {
     /////////////////////
     ///#1 INTESTAZIONE//////////////////////////////////////////////////////////////////////
@@ -77,5 +78,13 @@ int main() {
     {
         printf("\nFile 'dba.txt' letto con successo\n");
     }
+
+    //#2.3 Dati atmosferici
+
+    double press=101225 ,temp=15 ,rho=1.225, vsuono=340;
+
+    Atmosphere(press,temp,rho,vsuono);
+
+
     return 0;
 }
