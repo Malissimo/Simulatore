@@ -4,6 +4,7 @@
 #include <math.h>
 #include "ManageFile.h"
 #include "Atmosphere.h"
+#include "CI_utente.h"
 int main() {
     /////////////////////
     ///#1 INTESTAZIONE//////////////////////////////////////////////////////////////////////
@@ -32,6 +33,10 @@ int main() {
     double CXde[1000],CXdle[1000],CZde[1000],CZdle[1000],CYda[1000],CYdr[1000];
     double Clda[1000],Cldr[1000],Cmde[1000],Cmdle[1000],Cnda[1000],Cndr[1000];
     double CXom[1000],CYom[1000],CZom[1000],Clom[1000],Cmom[1000],Cnom[1000];
+    double press0=101325 ,temp0=15 ,rho0=1.225, vsuono0=340;
+    double press_h ,temp_h ,rho_h, vsuono_h, Pmax_h;
+    double CI[3]={52,1000,0};
+    int flagatm;
     int ritorno=0;
 
     //#2.2 Apertura dei file, lettura e salvataggio su vettori
@@ -81,10 +86,11 @@ int main() {
 
     //#2.3 Dati atmosferici
 
-    double press=101225 ,temp=15 ,rho=1.225, vsuono=340;
+    AtmosphereChoice(&press0,&temp0,&rho0,&vsuono0,&press_h,&temp_h,&rho_h,&vsuono_h,&flagatm); //fa scegliere all'utente le opzioni atmosferiche
 
-    Atmosphere(press,temp,rho,vsuono);
+    loadCI(CI,&flagatm); // fa scegliere all'utente le condizioni iniziali
 
+    AtmosphereCalc (CI,datiengine,Pmax_h,&press0,&temp0,&rho0,&vsuono0,&press_h,&temp_h,&rho_h,&vsuono_h,&flagatm);
 
     return 0;
 }
